@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us - Pothole Fixers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+    }
+
+    /* Navbar */
+    .topnav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .topnav h3, .topnav a {
+      margin: 0;
+      padding: 0;
+      font-weight: 500;
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .topnav a:hover {
+      color: #f1c40f;
+    }
+
+    h2, h3 {
+      text-align: center;
+      margin: 0.3rem auto;
+    }
+
+    /* Contact Section */
+    .section-title {
+      font-size: 28px;
+      margin: 40px 0 10px;
+      text-align: center;
+    }
+
+    .contact-info {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .contact-info i {
+      margin-right: 10px;
+      color: #f39c12;
+    }
+
+    /* Developer Cards */
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 20px;
+      width: 300px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 35px rgba(255, 255, 255, 0.2);
+    }
+
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      margin: 8px 0;
+    }
+
+    .card i {
+      margin-right: 10px;
+      color: #f39c12;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #ccc;
+      margin-top: 50px;
+    }
+
+    @media (max-width: 768px) {
+      .card-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="topnav">
+    <h3><i class="fa-solid fa-phone-volume"></i> Contact Us</h3>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="report.html">Report</a>
+      <a href="activedatabase.html">Database</a>
+      <a href="contact.html">Contact</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+
+  <!-- Department Contact -->
+  <h2 class="section-title">Department Contact</h2>
+  <div class="contact-info">
+    <p><i class="fa-solid fa-envelope"></i> potholefixers@gmail.com</p>
+    <p><i class="fa-solid fa-phone"></i> 5486695210</p>
+  </div>
+
+  <!-- Developer Contacts -->
+  <h2 class="section-title">Our Developers</h2>
+  <div class="card-container">
+
+    <div class="card">
+      <h3>Yogeshwar Yeola</h3>
+      <p><i class="fa-solid fa-envelope"></i> nbuendia.potholefixers@gmail.com</p>
+      <p><i class="fa-solid fa-phone"></i> 9546425120</p>
+      <p><i class="fa-solid fa-code"></i> Java, JSP, Servlet, Oracle DB</p>
+    </div>
+
+    <div class="card">
+      <h3>Aditya Patil</h3>
+      <p><i class="fa-solid fa-envelope"></i> dnagornyi.potholefixers@gmail.com</p>
+      <p><i class="fa-solid fa-phone"></i> 5514202009</p>
+      <p><i class="fa-solid fa-code"></i> Spring Boot, HTML, MySQL</p>
+    </div>
+
+    <div class="card">
+      <h3>Tushar Lahamge</h3>
+      <p><i class="fa-solid fa-envelope"></i> msoltys.potholefixers@gmail.com</p>
+      <p><i class="fa-solid fa-phone"></i> 5514209283</p>
+      <p><i class="fa-solid fa-code"></i> Bootstrap, JS, Responsive Design</p>
+    </div>
+
+    <div class="card">
+      <h3>Dimpal Patil</h3>
+      <p><i class="fa-solid fa-envelope"></i> potholes.potholefixers@gmail.com</p>
+      <p><i class="fa-solid fa-phone"></i> 5514203690</p>
+      <p><i class="fa-solid fa-code"></i> UI/UX, 3D Animations, Figma</p>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>Disclaimer: These are sample emails and phone numbers, not real contacts.</p>
+    <p>© 2025 Pothole Fixers. All rights reserved.</p>
+  </div>
+
+</body>
+</html>

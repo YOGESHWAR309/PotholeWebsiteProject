@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>About Us - Pothole Fixers</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+    }
+
+    /* Navbar */
+    .topnav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .topnav h3, .topnav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+    }
+
+    .topnav a:hover {
+      color: #f1c40f;
+    }
+
+    h2, h3 {
+      text-align: center;
+    }
+
+    .content {
+      padding: 30px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .content p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 10px 0;
+    }
+
+    .creator-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .creator-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 20px;
+      width: 220px;
+      text-align: center;
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .creator-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .creator-card h3 {
+      color: #f9ca24;
+      font-size: 20px;
+      margin: 10px 0;
+    }
+
+    /* Headquarters Section */
+    .headquarters-section {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .headquarters-section h2 {
+      font-size: 26px;
+    }
+
+    .headquarters-section h3 {
+      margin-bottom: 15px;
+    }
+
+    .headquarters img {
+      max-width: 90%;
+      border-radius: 10px;
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+      margin-top: 20px;
+      display: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .btn-group {
+      margin-top: 20px;
+    }
+
+    .btn-group input {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      background-color: #f1c40f;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn-group input:hover {
+      background-color: #e67e22;
+    }
+
+    @media (max-width: 768px) {
+      .creator-section {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+
+  <script>
+    function headquarters_appear() {
+      document.getElementById("hq-img").style.display = "block";
+    }
+
+    function headquarters_disappear() {
+      document.getElementById("hq-img").style.display = "none";
+    }
+  </script>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="topnav">
+    <h3><i class="fa-solid fa-circle-info"></i> About Us</h3>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="report.html">Report</a>
+      <a href="activedatabase.html">Database</a>
+      <a href="contact.html">Contact</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+
+  <!-- About Content -->
+  <div class="content">
+    <h2>Our Mission</h2>
+    <p>Our department was created to help citizens report potholes and track repair progress efficiently. This platform allows people to become proactive in city maintenance and avoid dangerous driving conditions.</p>
+    <p>Potholes cause damage, delays, and even accidents. Yet, they often go ignored. Our aim is to build a bridge between the public and local municipal action by highlighting the most critical areas.</p>
+    <p>With this site, anyone can report a pothole quickly, visualize its location, and assist in improving road safety together.</p>
+
+    <h2>Creators</h2>
+    <div class="creator-section">
+      <div class="creator-card">
+        <h3>Yogeshwar Yeola</h3>
+        <p>Lead Developer, UI/UX</p>
+      </div>
+      <div class="creator-card">
+        <h3>Tushar Lahamge</h3>
+        <p>Database & Integration</p>
+      </div>
+      <div class="creator-card">
+        <h3>Dimpal Patil</h3>
+        <p>Frontend & Animations</p>
+      </div>
+      <div class="creator-card">
+        <h3>Aditya Patil</h3>
+        <p>Backend & API Design</p>
+      </div>
+    </div>
+
+   
+    </div>
+  </div>
+
+</body>
+</html>

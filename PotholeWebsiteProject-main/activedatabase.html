@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Active Pothole Database</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #141e30, #243b55);
+      color: #fff;
+    }
+    .topnav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+    .topnav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+    }
+    .topnav a:hover {
+      color: #f1c40f;
+    }
+    h2 {
+      text-align: center;
+      margin-top: 30px;
+    }
+    table {
+      width: 95%;
+      margin: 30px auto;
+      border-collapse: collapse;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    th, td {
+      padding: 14px;
+      text-align: left;
+    }
+    th {
+      background-color: #f39c12;
+      color: black;
+    }
+    tr:nth-child(even) {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+    .preview {
+      width: 80px;
+      height: auto;
+      border-radius: 5px;
+    }
+    .delete-btn {
+      padding: 6px 12px;
+      background-color: #e74c3c;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .delete-btn:hover {
+      background-color: #c0392b;
+    }
+    .download-btn {
+      background-color: #f39c12;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 20px auto;
+      display: block;
+      transition: 0.3s ease;
+    }
+  </style>
+</head>
+<body onload="putintodatabase()">
+  <nav class="topnav">
+    <h3><i class="fa-solid fa-database"></i> Active Database</h3>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="report.html">Report</a>
+      <a href="activedatabase.html">Database</a>
+      <a href="contact.html">Contact</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+
+  <h2>🕵️‍♂️ Active Reports Database</h2>
+
+  <table id="myTable">
+    <tr>
+      <th>Location</th>
+      <th>Size Estimate</th>
+      <th>Comments</th>
+      <th>Date Posted</th>
+      <th>Image</th>
+      <th>Delete</th>
+    </tr>
+  </table>
+
+  <!-- Download CSV Button -->
+  <button onclick="downloadCSV()" class="download-btn">⬇️ Download CSV</button>
+
+  <!-- JS Functionality -->
+  <script>
+    function putintodatabase() {
+      const table = document.getElementById("myTable");
+      const counter = parseInt(localStorage.getItem("counter")) || 0;
+
+      for (let i = 0; i < counter; i++) {
+        const location = localStorage.getItem("location" + i);
+        const size = localStorage.getItem("sizeest" + i);
+        const comments = localStorage.getItem("comments" + i);
+        const date = localStorage.getItem("date" + i);
+        const imageUrl = localStorage.getItem("image" + i);
+
+        if (location && size && date) {
+          const row = table.insertRow(-1);
+          row.insertCell(0).textContent = location;
+          row.insertCell(1).textContent = size;
+          row.insertCell(2).textContent = comments || "-";
+          row.insertCell(3).textContent = date;
+
+          const imageCell = row.insertCell(4);
+          if (imageUrl) {
+            const img = document.createElement("img");
+            img.src = imageUrl;
+            img.className = "preview";
+            imageCell.appendChild(img);
+          } else {
+            imageCell.textContent = "No Image";
+          }
+
+          const deleteCell = row.insertCell(5);
+          const delBtn = document.createElement("button");
+          delBtn.textContent = "Delete";
+          delBtn.className = "delete-btn";
+          delBtn.onclick = function () {
+            deleteEntry(i);
+          };
+          deleteCell.appendChild(delBtn);
+        }
+      }
+    }
+
+    function deleteEntry(index) {
+      localStorage.removeItem("location" + index);
+      localStorage.removeItem("sizeest" + index);
+      localStorage.removeItem("comments" + index);
+      localStorage.removeItem("date" + index);
+      localStorage.removeItem("image" + index);
+      location.reload();
+    }
+
+    function downloadCSV() {
+      let csv = "Location,Size Estimate,Comments,Date Posted\n";
+      const counter = parseInt(localStorage.getItem("counter")) || 0;
+
+      for (let i = 0; i < counter; i++) {
+        const location = localStorage.getItem("location" + i) || "";
+        const size = localStorage.getItem("sizeest" + i) || "";
+        const comments = localStorage.getItem("comments" + i) || "";
+        const date = localStorage.getItem("date" + i) || "";
+
+        if (location && size && date) {
+          const row = [
+            `"${location}"`,
+            `"${size}"`,
+            `"${comments.replace(/"/g, '""')}"`,
+            `"${date}"`
+          ].join(",");
+          csv += row + "\n";
+        }
+      }
+
+      const blob = new Blob([csv], { type: "text/csv" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "pothole_reports.csv";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+  </script>
+</body>
+</html>

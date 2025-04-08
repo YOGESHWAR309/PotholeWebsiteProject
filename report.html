@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Report a Pothole</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to right, #2c3e50, #3498db);
+      color: #fff;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+    .navbar h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    .nav-links a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .nav-links a:hover {
+      color: #f1c40f;
+    }
+    .form-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+    }
+    label {
+      font-weight: 500;
+      display: block;
+      margin-top: 15px;
+    }
+    input[type="text"], input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 5px;
+      background-color: #f7f7f7;
+      color: #333;
+    }
+    .btn-submit {
+      display: block;
+      width: 100%;
+      margin-top: 25px;
+      background: #f39c12;
+      color: #fff;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .btn-submit:hover {
+      background: #e67e22;
+    }
+    .preview-img {
+      display: block;
+      margin: 15px auto;
+      max-width: 100%;
+      border-radius: 10px;
+    }
+  </style>
+  <script>
+    let uploadedImageBase64 = "";
+
+    function previewImage(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function () {
+          uploadedImageBase64 = reader.result;
+          const output = document.getElementById('preview');
+          output.src = uploadedImageBase64;
+          output.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function getdata() {
+      const onstreet = document.getElementById("onstreet").value;
+      const fromstreet = document.getElementById("fstreet").value;
+      const tostreet = document.getElementById("tstreet").value;
+      const size = document.getElementById("size").value;
+      const addcom = document.getElementById("comments").value;
+
+      const currentdate = new Date();
+      const datetime = (currentdate.getMonth() + 1) + "/" +
+        currentdate.getDate() + "/" +
+        currentdate.getFullYear() + " @ " +
+        currentdate.getHours() + ":" +
+        currentdate.getMinutes() + ":" +
+        currentdate.getSeconds();
+
+      let counter = parseInt(localStorage.getItem("counter")) || 0;
+
+      localStorage.setItem("location" + counter, onstreet + ", " + fromstreet + ", " + tostreet);
+      localStorage.setItem("sizeest" + counter, size);
+      localStorage.setItem("comments" + counter, addcom);
+      localStorage.setItem("date" + counter, datetime);
+      if (uploadedImageBase64) {
+        localStorage.setItem("image" + counter, uploadedImageBase64);
+      }
+
+      localStorage.setItem("counter", counter + 1);
+
+      alert("Your report has been submitted successfully!");
+      window.location.href = "activedatabase.html";
+      return false;
+    }
+  </script>
+</head>
+<body>
+
+  <header class="navbar">
+    <h1><i class="fa-solid fa-triangle-exclamation"></i> Report a Pothole</h1>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="report.html">Report</a>
+      <a href="activedatabase.html">Database</a>
+      <a href="contact.html">Contact</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <div class="form-container">
+    <h2>Submit a New Report</h2>
+    <form onsubmit="return getdata()">
+      <label for="onstreet">On Street *</label>
+      <input type="text" id="onstreet" required />
+
+      <label for="fstreet">From Street *</label>
+      <input type="text" id="fstreet" required />
+
+      <label for="tstreet">To Street *</label>
+      <input type="text" id="tstreet" required />
+
+      <label for="size">Approximate Size *</label>
+      <input type="text" id="size" required />
+
+      <label for="comments">Additional Comments</label>
+      <input type="text" id="comments" />
+
+      <label for="potholeImage">Upload Pothole Image</label>
+      <input type="file" id="potholeImage" accept="image/*" onchange="previewImage(event)" />
+      <img id="preview" class="preview-img" style="display:none;" />
+
+      <input class="btn-submit" type="submit" value="Submit Report" />
+    </form>
+  </div>
+</body>
+</html>
